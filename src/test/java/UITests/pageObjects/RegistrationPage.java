@@ -14,33 +14,32 @@ public class RegistrationPage {
     private WebDriver driver;
 
     // Локатор для кнопки "Войти в аккаунт"
-    @FindBy(xpath = "//button[contains(text(),'Войти в аккаунт')]")
+    @FindBy(xpath = "//button[contains(text(),'Войти')]") // Изменено с "Войти в аккаунт" на "Войти"
     private WebElement loginAccountButton;
 
     // Локатор для кнопки регистрации
-    @FindBy(xpath = "//*[@id=\"root\"]/div/main/div/div/p[1]/a")
+    @FindBy(xpath = "//a[contains(text(),'Зарегистрироваться')]") // Изменено с указания по слоям на более точный локатор по тексту
     private WebElement registerButton;
 
     // Локатор для поля ввода имени
-    @FindBy(xpath = "//input[@name='name']")
+    @FindBy(name = "name") // Используем атрибут name для большей стабильности
     private WebElement nameInput;
 
     // Локатор для поля ввода email
-    @FindBy(xpath = "//*[@id=\"root\"]/div/main/div/form/fieldset[2]/div/div/input")
+    @FindBy(name = "email") // Предполагается, что есть поле с атрибутом name
     private WebElement emailInput;
 
     // Локатор для поля ввода пароля
-    @FindBy(xpath = "//*[@id=\"root\"]/div/main/div/form/fieldset[3]/div/div/input")
+    @FindBy(name = "password") // Предполагается, что есть поле с атрибутом name
     private WebElement passwordInput;
 
-    // Локатор для кнопки Зарегистрироваться
-    @FindBy(xpath = "//*[@id=\"root\"]/div/main/div/form/button")
+    // Локатор для кнопки "Зарегистрироваться"
+    @FindBy(xpath = "//button[contains(text(),'Зарегистрироваться')]") // Изменено с указания по слоям на более точный локатор по тексту
     private WebElement registerButtonClick;
 
     // Локатор для сообщения об ошибке
-    @FindBy(xpath = "//*[@id=\"root\"]/div/main/div/form/fieldset[3]/div/p")
+    @FindBy(xpath = "//div[contains(@class, 'error-message')]") // Используем более точный класс, если возможен
     private WebElement passwordError;
-
 
     // Конструктор
     public RegistrationPage(WebDriver driver) {
@@ -55,57 +54,49 @@ public class RegistrationPage {
 
     public void waitForEmailInput() {
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
-        wait.until(ExpectedConditions.visibilityOf(nameInput));
+        wait.until(ExpectedConditions.visibilityOf(emailInput)); // Исправлено, чтобы ожидать поле email
     }
 
     public void waitForPasswordInput() {
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
-        wait.until(ExpectedConditions.visibilityOf(nameInput));
+        wait.until(ExpectedConditions.visibilityOf(passwordInput)); // Исправлено, чтобы ожидать поле password
     }
 
     public void scrollToRegisterButton() {
-        WebElement registerButton = driver.findElement(By.xpath("//*[@id=\"root\"]/div/main/div/div/p[1]/a"));
+        // Используем локатор кнопки регистрации
         ((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);", registerButton);
     }
 
-
     // Методы для взаимодействия с элементами
     public void clickLoginAccountButton() {
-
         loginAccountButton.click();
     }
-    public void clickRegisterButton() {
 
+    public void clickRegisterButton() {
         registerButton.click();
     }
 
     public void enterName(String name) {
-
         nameInput.sendKeys(name);
     }
 
     public void enterEmail(String email) {
-
         emailInput.sendKeys(email);
     }
 
     public void enterPassword(String password) {
-
         passwordInput.sendKeys(password);
     }
 
     public void clickRegisterButtonClick() {
-
-        registerButton.click();
+        registerButtonClick.click(); // Исправлено на registerButtonClick
     }
 
     public boolean isPasswordErrorDisplayed() {
-
         return passwordError.isDisplayed();
     }
 
     public String getPasswordErrorText() {
-
         return passwordError.getText();
     }
 }

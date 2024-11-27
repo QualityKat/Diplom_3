@@ -20,19 +20,24 @@ public class ConstructorTest extends BaseTest {
         super(browser);
     }
 
-
     @Test
     @Description("Проверка перехода в раздел 'Соусы'")
     public void testSaucesSection() {
         constructorPage.clickSaucesSection();
+        // Добавляем утверждение, чтобы убедиться, что переход на раздел действительно произошел
         assertEquals("Соусы", constructorPage.getSaucesHeaderText());
+        // Проверяем, что страница соусов загружена
+        assertTrue("Страница с соусами не загружена", constructorPage.isSaucePageLoaded());
     }
 
     @Test
     @Description("Проверка перехода в раздел 'Начинки'")
     public void testFillingsSection() {
         constructorPage.clickFillingsSection();
+        // Проверяем, что загружается заголовок "Начинки"
         assertEquals("Начинки", constructorPage.getFillingsHeaderText());
+        // Проверка, что страница начинок загружена
+        assertTrue("Страница с начинками не загружена", constructorPage.isFillingsPageLoaded());
     }
 
     @Test
@@ -41,5 +46,7 @@ public class ConstructorTest extends BaseTest {
         constructorPage.clickSaucesSection();
         constructorPage.clickBunsSection();
         assertEquals("Булки", constructorPage.getBunsHeaderText());
+        // Проверка, что страница булок загрузилась
+        assertTrue("Страница с булками не загружена", constructorPage.isBunsPageLoaded());
     }
 }
