@@ -32,6 +32,7 @@ public abstract class BaseTest {
         constructorPage = new ConstructorPage(driver);
         System.out.println("Тест запущен в браузере: " + browser);
     }
+
     @Step("Завершение работы с WebDriver")
     @After
     public void tearDown() {

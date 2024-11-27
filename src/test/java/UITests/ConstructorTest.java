@@ -13,7 +13,6 @@ public class ConstructorTest extends BaseTest {
     public static Collection<Object[]> data() {
         return BrowserParameters.getBrowserData(); // Вызов параметров из внешнего класса
     }
-
     // Конструктор для передачи параметров в BaseTest
     // Для вызова тестов в разных браузерах одной командой mvn clean test
     public ConstructorTest(String browser) {

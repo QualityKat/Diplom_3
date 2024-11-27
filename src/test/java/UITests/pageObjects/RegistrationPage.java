@@ -46,7 +46,6 @@ public class RegistrationPage {
         this.driver = driver;
         PageFactory.initElements(driver, this);
     }
-
     public void waitForNameInput() {
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
         wait.until(ExpectedConditions.visibilityOf(nameInput));
