@@ -4,8 +4,11 @@ import io.qameta.allure.Description;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.junit.runners.Parameterized;
+
 import java.util.Collection;
+
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
 
 @RunWith(Parameterized.class)
 public class ConstructorTest extends BaseTest {
@@ -13,8 +16,8 @@ public class ConstructorTest extends BaseTest {
     public static Collection<Object[]> data() {
         return BrowserParameters.getBrowserData(); // Вызов параметров из внешнего класса
     }
+
     // Конструктор для передачи параметров в BaseTest
-    // Для вызова тестов в разных браузерах одной командой mvn clean test
     public ConstructorTest(String browser) {
         super(browser);
     }
@@ -49,3 +52,4 @@ public class ConstructorTest extends BaseTest {
         assertTrue("Страница с булками не загружена", constructorPage.isBunsPageLoaded());
     }
 }
+

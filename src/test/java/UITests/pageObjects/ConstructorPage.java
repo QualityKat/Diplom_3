@@ -4,7 +4,6 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
-
 public class ConstructorPage {
     private WebDriver driver;
 
@@ -20,19 +19,17 @@ public class ConstructorPage {
     @FindBy(xpath = "//span[text()='Начинки']")
     private WebElement fillingsSection;
 
-    // Локатор активного раздела Соусы
+    // Локатор заголовка раздела "Соусы"
     @FindBy(xpath = "//*[@id='root']/div/main/section[1]/div[2]/h2[2]")
-    private WebElement saucesHeaderSauces;
+    private WebElement saucesHeader;
 
-    // Локатор активного раздела Начинки
-    @FindBy(xpath = "//*[@id=\"root\"]/div/main/section[1]/div[2]/h2[3]")
-    private WebElement saucesHeaderFillings;
+    // Локатор заголовка раздела "Начинки"
+    @FindBy(xpath = "//*[@id='root']/div/main/section[1]/div[2]/h2[3]")
+    private WebElement fillingsHeader;
 
-    // Локатор активного раздела Начинки
-    @FindBy(xpath = "//*[@id=\"root\"]/div/main/section[1]/div[2]/h2[1]")
-    private WebElement saucesHeaderBuns;
-
-
+    // Локатор заголовка раздела "Булки"
+    @FindBy(xpath = "//*[@id='root']/div/main/section[1]/div[2]/h2[1]")
+    private WebElement bunsHeader;
 
     // Конструктор
     public ConstructorPage(WebDriver driver) {
@@ -40,15 +37,13 @@ public class ConstructorPage {
         PageFactory.initElements(driver, this);
     }
 
-
-
     // Методы для взаимодействия с элементами
     public void clickSaucesSection() {
         saucesSection.click();
     }
 
     public String getSaucesHeaderText() {
-        return saucesHeaderSauces.getText();
+        return saucesHeader.getText();
     }
 
     public void clickFillingsSection() {
@@ -56,7 +51,7 @@ public class ConstructorPage {
     }
 
     public String getFillingsHeaderText() {
-        return saucesHeaderFillings.getText();
+        return fillingsHeader.getText();
     }
 
     public void clickBunsSection() {
@@ -64,6 +59,19 @@ public class ConstructorPage {
     }
 
     public String getBunsHeaderText() {
-        return saucesHeaderBuns.getText();
+        return bunsHeader.getText();
+    }
+
+    // Методы для проверки, что соответствующие страницы загружены
+    public boolean isSaucePageLoaded() {
+        return saucesHeader.isDisplayed();
+    }
+
+    public boolean isFillingsPageLoaded() {
+        return fillingsHeader.isDisplayed();
+    }
+
+    public boolean isBunsPageLoaded() {
+        return bunsHeader.isDisplayed();
     }
 }

@@ -27,7 +27,6 @@
                     <includes>
                         <include>**/*Test.java</include>
                         <include>**/UITests/*Test.java</include>
-                        <!--<include>**/webTests/yandex/*Test.java</include>-->
                     </includes>
                     <properties>
                         <property>
@@ -76,9 +75,16 @@
         <dependency>
             <groupId>org.seleniumhq.selenium</groupId>
             <artifactId>selenium-java</artifactId>
-            <version>4.25.0</version>
+            <version>${selenium.version}</version>
         </dependency>
-        <!-- WebDriverManager -->
+
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-simple</artifactId>
+            <version>1.7.30</version>
+        </dependency>
+
+        <!-- WebDriverManager для управления драйверами -->
         <dependency>
             <groupId>io.github.bonigarcia</groupId>
             <artifactId>webdrivermanager</artifactId>
