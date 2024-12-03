@@ -4,6 +4,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
+
 public class ConstructorPage {
     private WebDriver driver;
 
@@ -30,6 +31,7 @@ public class ConstructorPage {
     // Локатор заголовка раздела "Булки"
     @FindBy(xpath = "//*[@id='root']/div/main/section[1]/div[2]/h2[1]")
     private WebElement bunsHeader;
+
 
     // Конструктор
     public ConstructorPage(WebDriver driver) {

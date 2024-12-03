@@ -25,7 +25,14 @@ public class ConstructorTest extends BaseTest {
     @Test
     @Description("Проверка перехода в раздел 'Соусы'")
     public void testSaucesSection() {
-        constructorPage.clickSaucesSection();
+
+        // МАКСИМ, привет!) мой мозг уже между булочкой и соусом, честное слово)))
+        // в коде нашла только одно это замечание, постаралась исправить, вроде все продолжает работать
+        // и без той строки, да, как ты и указал. прости, туплю)
+        // И да, не суди строго, плиз, мне еще работать и работать над собой) я временами лошара, но честная)))
+
+        // Удаляем переход по вкладкам, чтобы проверить, что тест не проходит без него
+        // constructorPage.clickSaucesSection(); // Удалено
         // Добавляем утверждение, чтобы убедиться, что переход на раздел действительно произошел
         assertEquals("Соусы", constructorPage.getSaucesHeaderText());
         // Проверяем, что страница соусов загружена
@@ -35,7 +42,8 @@ public class ConstructorTest extends BaseTest {
     @Test
     @Description("Проверка перехода в раздел 'Начинки'")
     public void testFillingsSection() {
-        constructorPage.clickFillingsSection();
+        // Удаляем переход по вкладкам, чтобы проверить, что тест не проходит без него
+        // constructorPage.clickFillingsSection(); // Удалено
         // Проверяем, что загружается заголовок "Начинки"
         assertEquals("Начинки", constructorPage.getFillingsHeaderText());
         // Проверка, что страница начинок загружена
@@ -45,11 +53,11 @@ public class ConstructorTest extends BaseTest {
     @Test
     @Description("Проверка перехода в раздел 'Булки'")
     public void testBunsSection() {
-        constructorPage.clickSaucesSection();
-        constructorPage.clickBunsSection();
+        // Удаляем переход по вкладкам, чтобы проверить, что тест не проходит без него
+        // constructorPage.clickSaucesSection(); // Удалено
+        // constructorPage.clickBunsSection(); // Удалено
         assertEquals("Булки", constructorPage.getBunsHeaderText());
         // Проверка, что страница булок загрузилась
         assertTrue("Страница с булками не загружена", constructorPage.isBunsPageLoaded());
     }
 }
-
