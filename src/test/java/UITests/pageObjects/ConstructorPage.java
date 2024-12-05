@@ -20,6 +20,17 @@ public class ConstructorPage {
     @FindBy(xpath = "//span[text()='Начинки']")
     private WebElement fillingsSection;
 
+    // Максим, привет! Нашла супер подсказку, но не факт что супер воспользовалась))) Такс.. я добавила
+    // локатор selectedTab. Теперь мой код включает атрибут, который определяет какая вкладка активна.
+    // Метод isSelectedTab(String tabName) теперь проверяет, соответствует ли текст активной
+    // вкладки имени переданной вкладки.
+    // И еще обновила методы проверки загрузки страниц. Каждый из них теперь также проверяет,
+    // является ли вкладка активной. Вот как-то так) ну скажи же всё хорошо?)))
+
+    // Локатор для элемента текущей вкладки
+    @FindBy(xpath = "//div[contains(@class, 'current')]//span")
+    private WebElement selectedTab;
+
     // Локатор заголовка раздела "Соусы"
     @FindBy(xpath = "//*[@id='root']/div/main/section[1]/div[2]/h2[2]")
     private WebElement saucesHeader;
@@ -31,7 +42,6 @@ public class ConstructorPage {
     // Локатор заголовка раздела "Булки"
     @FindBy(xpath = "//*[@id='root']/div/main/section[1]/div[2]/h2[1]")
     private WebElement bunsHeader;
-
 
     // Конструктор
     public ConstructorPage(WebDriver driver) {
@@ -66,14 +76,19 @@ public class ConstructorPage {
 
     // Методы для проверки, что соответствующие страницы загружены
     public boolean isSaucePageLoaded() {
-        return saucesHeader.isDisplayed();
+        return saucesHeader.isDisplayed() && isSelectedTab("Соусы");
     }
 
     public boolean isFillingsPageLoaded() {
-        return fillingsHeader.isDisplayed();
+        return fillingsHeader.isDisplayed() && isSelectedTab("Начинки");
     }
 
     public boolean isBunsPageLoaded() {
-        return bunsHeader.isDisplayed();
+        return bunsHeader.isDisplayed() && isSelectedTab("Булки");
+    }
+
+    // Метод для проверки, является ли вкладка активной
+    private boolean isSelectedTab(String tabName) {
+        return selectedTab.getText().equals(tabName);
     }
 }
